@@ -1,0 +1,15 @@
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\bin\Debug\GateSim.exe.config
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\bin\Debug\GateSim.exe
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\bin\Debug\GateSim.pdb
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\GateSim.csproj.AssemblyReference.cache
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\App.g.cs
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\GateSim_MarkupCompile.cache
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\GateSim_MarkupCompile.lref
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\GateSim.g.resources
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\GateSim.Properties.Resources.resources
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\GateSim.csproj.GenerateResource.cache
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\GateSim.csproj.CoreCompileInputs.cache
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\GateSim.exe
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\GateSim.pdb
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\Windows\StartUp.g.cs
+C:\Users\Konrad\source\repos\JustConradPL\GateSim\GateSimSln\GateSim\obj\Debug\Windows\StartUp.baml

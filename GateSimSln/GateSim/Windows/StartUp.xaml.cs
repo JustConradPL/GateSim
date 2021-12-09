@@ -13,16 +13,29 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using GateSim.Models.Classes;
+
 namespace GateSim
 {
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StartUp : Window
     {
-        public MainWindow()
+        public StartUp()
         {
             InitializeComponent();
+
+            AndGate gateA = new AndGate(2, 1);
+            gateA.SetInput(1, false);
+            gateA.SetInput(0, true);
+
+            NotGate gateB = new NotGate(false);
+
+            gateB.SetInput(gateA.GetOutput(0).Value);
+
+            MessageBox.Show(gateB.Output.ToString());
+
         }
     }
 }
