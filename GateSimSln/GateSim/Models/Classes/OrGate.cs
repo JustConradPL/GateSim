@@ -21,7 +21,7 @@ namespace GateSim.Models.Classes
 
             for (int i = 0; i < inputs.Length; i++)
             {
-                if(inputs[i].HasValue&&inputs[i].Value)
+                if(inputs[i].In)
                 {
                     isSomeOutputTrue = true;
                     break;
@@ -30,7 +30,7 @@ namespace GateSim.Models.Classes
 
             for (int i = 0; i < outputs.Length; i++)
             {
-                outputs[i] = isSomeOutputTrue;
+                outputs[i].Out = isSomeOutputTrue;
             }
         }//--------------------------------------------------------------
     }//########################################################

@@ -13,41 +13,51 @@ namespace GateSim.Models.Classes
             Nullable = 0,
             NotNullable = 1,
         };
-
-        protected event Action inputChanged;
-
         public bool shouldAutoRun { private get; set; }
 
-        protected bool?[] inputs;
-        protected bool?[] outputs;
+        protected Input[] inputs;
+        protected Output[] outputs;
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4
 
         public Gate(uint InputAmount, uint OutputAmount)
         {
-            inputs = new bool?[InputAmount];
-            outputs = new bool?[OutputAmount];
+            inputs = new Input[InputAmount];
+            outputs = new Output[OutputAmount];
             shouldAutoRun = true;
-            inputChanged += Run;
+            for (int i = 0; i < OutputAmount; i++)
+            {
+                outputs[i] = new Output();
+            }
+            for (int i = 0; i < InputAmount; i++)
+            {
+                inputs[i] = new Input();
+                inputs[i].AddActionWhenOutputChange(Run);
+            }
         }//------------------------------------------------------------
 
         public void SetInput(uint Index, bool Value)
         {
-            inputs[Index] = Value;
-            if (shouldAutoRun) inputChanged();
+            inputs[Index].In = Value;
         }//------------------------------------------------------------
 
-        public bool? GetOutput(uint Index, OutputType ExpectedOutput = OutputType.NotNullable)
+        public bool GetOutput(uint Index)
         {
-            return ExpectedOutput == OutputType.Nullable ?
-                outputs[Index] : (inputs[Index].HasValue ?
-                outputs[Index].Value : throw new NullReferenceException("Expected output is equal to null"));
+            return outputs[Index].Out;
         }//------------------------------------------------------------
 
-        public bool? GetInput(uint Index, OutputType ExpectedOutput = OutputType.NotNullable)
+        public Output GetOutputRaw(uint Index)
         {
-            return ExpectedOutput == OutputType.Nullable ?
-                inputs[Index] : (inputs[Index].HasValue ?
-                inputs[Index].Value : throw new NullReferenceException("Expected output is equal to null"));
+            return outputs[Index];
+        }//------------------------------------------------------------
+
+        public bool? GetInput(uint Index)
+        {
+            return inputs[Index].In;
+        }//------------------------------------------------------------
+
+        public Input GetInputRaw(uint Index)
+        {
+            return inputs[Index];
         }//------------------------------------------------------------
 
 
@@ -55,13 +65,13 @@ namespace GateSim.Models.Classes
         {
             for (int i = 0; i < outputs.Length; i++)
             {
-                outputs[i] = true;
+                outputs[i].Out = true;
             }
         }//------------------------------------------
 
-        public void Run()
+        public void Run(Input In)
         {
             SetOutputs();
-        }
+        }//------------------------------------------
     }//######################################################################################
 }

@@ -69,8 +69,10 @@
     <Compile Include="Models\Classes\AndGate.cs" />
     <Compile Include="Models\Classes\ConsoleHandler.cs" />
     <Compile Include="Models\Classes\Gate.cs" />
+    <Compile Include="Models\Classes\Input.cs" />
     <Compile Include="Models\Classes\NotGate.cs" />
     <Compile Include="Models\Classes\OrGate.cs" />
+    <Compile Include="Models\Classes\Output.cs" />
     <Compile Include="Windows\StartUp.xaml.cs">
       <DependentUpon>StartUp.xaml</DependentUpon>
       <SubType>Code</SubType>

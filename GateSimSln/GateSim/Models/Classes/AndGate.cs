@@ -11,7 +11,7 @@ namespace GateSim.Models.Classes
         public AndGate(uint InputAmount, uint OutputAmount) :
             base(InputAmount, OutputAmount)
         {
-
+            
         }//-----------------------------------------------------------
 
         protected override void SetOutputs()
@@ -20,7 +20,7 @@ namespace GateSim.Models.Classes
 
             for (int i = 0; i < inputs.Length; i++)
             {
-                if (inputs[i].HasValue && (!inputs[i].Value))
+                if (!inputs[i].In)
                 {
                     areAllInputsTrue = false;
                     break;
@@ -29,7 +29,7 @@ namespace GateSim.Models.Classes
 
             for (int i = 0; i < outputs.Length; i++)
             {
-                outputs[i] = areAllInputsTrue;
+                outputs[i].Out = areAllInputsTrue;
             }
         }//--------------------------------------------------------
 

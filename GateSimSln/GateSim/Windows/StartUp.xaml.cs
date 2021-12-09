@@ -27,12 +27,13 @@ namespace GateSim
             InitializeComponent();
 
             AndGate gateA = new AndGate(2, 1);
-            gateA.SetInput(1, false);
-            gateA.SetInput(0, true);
 
             NotGate gateB = new NotGate(false);
 
-            gateB.SetInput(gateA.GetOutput(0).Value);
+            gateB.LinkGate(gateA, 0);
+
+            gateA.SetInput(1, false);
+            gateA.SetInput(0, true);
 
             MessageBox.Show(gateB.Output.ToString());
 
