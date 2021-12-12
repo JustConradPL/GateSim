@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GateSim"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        >
     <Grid>
         <ToggleButton Click="Toggle1_Click" x:Name="Toggle1" Width="50" Height="50" Margin="82,125,661.6,245"/>
         <ToggleButton Click="Toggle2_Click" x:Name="Toggle2" Width="50" Height="50" Margin="82,202,661.6,168"/>

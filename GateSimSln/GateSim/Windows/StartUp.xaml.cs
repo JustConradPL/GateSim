@@ -25,24 +25,15 @@ namespace GateSim
         Output ValueA = new Output();
         Output ValueB = new Output();
 
-       
+
         public StartUp()
         {
             InitializeComponent();
-            OrGate OR = new OrGate(2, 1, "OR");
-            NandGate NAND = new NandGate(2, 1, "NAND");
-            AndGate AND = new AndGate(2, 1, "AND");
+            XnorGate XOR = new XnorGate(1, "XOR");
+            XOR.Link(ValueA, 0);
+            XOR.Link(ValueB, 1);
 
-            OR.Link(ValueA, 0);
-            OR.Link(ValueB, 1);
-
-            NAND.Link(ValueA, 0);
-            NAND.Link(ValueB, 1);
-
-            AND.Link(OR, 0, 0);
-            AND.Link(NAND, 0, 1);
-
-            AND.GetOutputRaw(0).AddActionWhenOutputChange(Update);
+            XOR.GetOutputRaw(0).AddActionWhenOutputChange(Update);
         }
 
         private void Toggle1_Click(object sender, RoutedEventArgs e)
