@@ -22,9 +22,9 @@ namespace GateSim.Models.Classes
             }
         }
 
-        public void AddActionWhenOutputChange(Action<Input> action)
+        public void AddActionWhenInputChange(Action<Input> action)
         {
             inputChanged += action;
-        }
+        }//---------------------------------------------
     }
 }

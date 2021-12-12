@@ -8,18 +8,14 @@ namespace GateSim.Models.Classes
 {
     public class Gate
     {
-        public enum OutputType
-        {
-            Nullable = 0,
-            NotNullable = 1,
-        };
         public bool shouldAutoRun { private get; set; }
 
         protected Input[] inputs;
         protected Output[] outputs;
+        protected string NAME;
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4
 
-        public Gate(uint InputAmount, uint OutputAmount)
+        public Gate(uint InputAmount, uint OutputAmount,string NAME="")
         {
             inputs = new Input[InputAmount];
             outputs = new Output[OutputAmount];
@@ -31,8 +27,10 @@ namespace GateSim.Models.Classes
             for (int i = 0; i < InputAmount; i++)
             {
                 inputs[i] = new Input();
-                inputs[i].AddActionWhenOutputChange(Run);
+                inputs[i].AddActionWhenInputChange(Run);
             }
+
+            this.NAME = NAME;
         }//------------------------------------------------------------
 
         public void SetInput(uint Index, bool Value)
@@ -69,9 +67,20 @@ namespace GateSim.Models.Classes
             }
         }//------------------------------------------
 
-        public void Run(Input In)
+        private void Run(Input In)
         {
             SetOutputs();
         }//------------------------------------------
+
+        public void Link(Gate Source, uint OutputIndex, uint InputIndex)
+        {
+            Link newLink = new Link(inputs[InputIndex], Source.GetOutputRaw(OutputIndex));
+        }//-------------------------------------------
+
+        public void Link(Output @out, uint InputIndex)
+        {
+            Link newLink = new Link(inputs[InputIndex], @out);
+        }//-------------------------------------------
+
     }//######################################################################################
 }

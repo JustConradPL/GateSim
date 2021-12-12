@@ -22,21 +22,44 @@ namespace GateSim
     /// </summary>
     public partial class StartUp : Window
     {
+        Output ValueA = new Output();
+        Output ValueB = new Output();
+
+       
         public StartUp()
         {
             InitializeComponent();
+            OrGate OR = new OrGate(2, 1, "OR");
+            NandGate NAND = new NandGate(2, 1, "NAND");
+            AndGate AND = new AndGate(2, 1, "AND");
 
-            AndGate gateA = new AndGate(2, 1);
+            OR.Link(ValueA, 0);
+            OR.Link(ValueB, 1);
 
-            NotGate gateB = new NotGate(false);
+            NAND.Link(ValueA, 0);
+            NAND.Link(ValueB, 1);
 
-            gateB.LinkGate(gateA, 0);
+            AND.Link(OR, 0, 0);
+            AND.Link(NAND, 0, 1);
 
-            gateA.SetInput(1, false);
-            gateA.SetInput(0, true);
+            AND.GetOutputRaw(0).AddActionWhenOutputChange(Update);
+        }
 
-            MessageBox.Show(gateB.Output.ToString());
+        private void Toggle1_Click(object sender, RoutedEventArgs e)
+        {
+            ValueA.Out = !ValueA.Out;
+        }
+        private void Toggle2_Click(object sender, RoutedEventArgs e)
+        {
+            ValueB.Out = !ValueB.Out;
+        }
+        private void Update(Output @out)
+        {
+            SolidColorBrush brush = new SolidColorBrush();
+            if (@out.Out) brush = new SolidColorBrush(Colors.Green);
+            else brush = new SolidColorBrush(Colors.Red);
 
+            Rectangle1.Fill = brush;
         }
     }
 }

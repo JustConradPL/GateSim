@@ -70,6 +70,9 @@
     <Compile Include="Models\Classes\ConsoleHandler.cs" />
     <Compile Include="Models\Classes\Gate.cs" />
     <Compile Include="Models\Classes\Input.cs" />
+    <Compile Include="Models\Classes\Link.cs" />
+    <Compile Include="Models\Classes\NandGate.cs" />
+    <Compile Include="Models\Classes\NorGate.cs" />
     <Compile Include="Models\Classes\NotGate.cs" />
     <Compile Include="Models\Classes\OrGate.cs" />
     <Compile Include="Models\Classes\Output.cs" />

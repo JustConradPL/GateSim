@@ -10,20 +10,22 @@ namespace GateSim.Models.Classes
     {
 
         Input input;
-        
-        public bool Output
+        private Output _Out = new Output();
+        public Output Out
         {
             get
             {
-                return !input.In;
+                return _Out;
             }
         }
+
 
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         public NotGate(bool InitialValue)
         {
             input = new Input();
             input.In = InitialValue;
+            input.AddActionWhenInputChange(SetOutput);
         }//---------------------------------------------------
 
         public void SetInput(bool Value)
@@ -31,14 +33,24 @@ namespace GateSim.Models.Classes
             input.In = Value;
         }//---------------------------------------------------
 
-        public void LinkGate(Gate Source, uint OutputIndex)
+        public bool GetOutput()
         {
-            Source.GetOutputRaw(OutputIndex).AddActionWhenOutputChange(ChangeOutput);
+            return Out.Out;
+        }//-------------------------------------------------
+
+        public void Link(Gate Source, uint OutputIndex)
+        {
+            Link newLink = new Link(input, Source.GetOutputRaw(OutputIndex));
         }//---------------------------------------------------
 
-        private void ChangeOutput(Output output)
+        public void Link(Output @out)
         {
-            input.In = output.Out;
-        }
+            Link newLink = new Link(input, @out);
+        }//--------------------------------------------------
+
+        private void SetOutput(Input @in)
+        {
+            _Out.Out = !@in.In;
+        }//-------------------------------------------------
     }//##################################################################3
 }

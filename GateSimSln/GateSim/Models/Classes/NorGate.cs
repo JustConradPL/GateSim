@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GateSim.Models.Classes
 {
-    public class OrGate : Gate
+    public class NorGate : Gate
     {
-        
-        public OrGate(uint InputAmount, uint OutputAmount, string NAME)
+
+        public NorGate(uint InputAmount, uint OutputAmount, string NAME)
             : base(InputAmount, OutputAmount, NAME)
         {
         }//--------------------------------------------------------
@@ -18,21 +18,21 @@ namespace GateSim.Models.Classes
 
         protected override void SetOutputs()
         {
-            bool isSomeOutputTrue = false;
+            bool areAllOutputsFalse = true;
 
 
             for (int i = 0; i < inputs.Length; i++)
             {
-                if(inputs[i].In)
+                if (inputs[i].In)
                 {
-                    isSomeOutputTrue = true;
+                    areAllOutputsFalse = false;
                     break;
                 }
             }
 
             for (int i = 0; i < outputs.Length; i++)
             {
-                outputs[i].Out = isSomeOutputTrue;
+                outputs[i].Out = areAllOutputsFalse;
             }
         }//--------------------------------------------------------------
     }//########################################################

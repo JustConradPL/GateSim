@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace GateSim.Models.Classes
 {
-    public class AndGate : Gate
+    public class NandGate : Gate
     {
-        public AndGate(uint InputAmount, uint OutputAmount,string NAME) :
+        public NandGate(uint InputAmount, uint OutputAmount, string NAME) :
             base(InputAmount, OutputAmount, NAME)
         {
-            
+
         }//-----------------------------------------------------------
 
         protected override void SetOutputs()
         {
-            bool areAllInputsFalse = true;
+            bool areAllInputsTrue = false;
 
             for (int i = 0; i < inputs.Length; i++)
             {
                 if (!inputs[i].In)
                 {
-                    areAllInputsFalse = false;
+                    areAllInputsTrue = true;
                     break;
                 }
             }
 
             for (int i = 0; i < outputs.Length; i++)
             {
-                outputs[i].Out = areAllInputsFalse;
+                outputs[i].Out = areAllInputsTrue;
             }
         }//--------------------------------------------------------
 
