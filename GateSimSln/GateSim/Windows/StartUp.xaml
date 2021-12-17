@@ -10,7 +10,9 @@
     <Grid>
         <ToggleButton Click="Toggle1_Click" x:Name="Toggle1" Width="50" Height="50" Margin="82,125,661.6,245"/>
         <ToggleButton Click="Toggle2_Click" x:Name="Toggle2" Width="50" Height="50" Margin="82,202,661.6,168"/>
-
+        <ToggleButton Click="Toggle3_Click" x:Name="Toggle3" Width="50" Height="50" Margin="82,278,661.6,92"/>
+        
         <Rectangle x:Name="Rectangle1" Fill="Red" Margin="466,175,225.6,154"/>
+        <Rectangle x:Name="Rectangle2" Fill="Red" Margin="596,175,95.6,154"/>
     </Grid>
 </Window>

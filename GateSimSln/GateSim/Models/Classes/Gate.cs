@@ -12,10 +12,9 @@ namespace GateSim.Models.Classes
 
         protected Input[] inputs;
         protected Output[] outputs;
-        protected string NAME;
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4
 
-        public Gate(uint InputAmount, uint OutputAmount,string NAME="")
+        public Gate(uint InputAmount, uint OutputAmount)
         {
             inputs = new Input[InputAmount];
             outputs = new Output[OutputAmount];
@@ -30,7 +29,6 @@ namespace GateSim.Models.Classes
                 inputs[i].AddActionWhenInputChange(Run);
             }
 
-            this.NAME = NAME;
         }//------------------------------------------------------------
 
         public void SetInput(uint Index, bool Value)
@@ -82,5 +80,6 @@ namespace GateSim.Models.Classes
             Link newLink = new Link(inputs[InputIndex], @out);
         }//-------------------------------------------
 
+        public static implicit operator bool(Gate e) => e.outputs[0].Out;
     }//######################################################################################
 }

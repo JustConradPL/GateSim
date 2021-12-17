@@ -21,7 +21,7 @@ namespace GateSim.Models.Classes
 
 
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-        public NotGate(bool InitialValue)
+        public NotGate(bool InitialValue = false)
         {
             input = new Input();
             input.In = InitialValue;

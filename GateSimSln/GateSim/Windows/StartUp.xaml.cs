@@ -24,16 +24,35 @@ namespace GateSim
     {
         Output ValueA = new Output();
         Output ValueB = new Output();
-
+        Output ValueC = new Output();
 
         public StartUp()
         {
             InitializeComponent();
-            XnorGate XOR = new XnorGate(1, "XOR");
-            XOR.Link(ValueA, 0);
-            XOR.Link(ValueB, 1);
+            OrGate OR = new OrGate(2, 1);
+            AndGate AND1 = new AndGate(2, 1);
+            AndGate AND2 = new AndGate(2, 1);
+            XorGate XOR1 = new XorGate(1);
+            XorGate XOR2 = new XorGate(1);
 
-            XOR.GetOutputRaw(0).AddActionWhenOutputChange(Update);
+            XOR1.Link(ValueA, 0);
+            XOR1.Link(ValueB, 1);
+
+            AND1.Link(ValueA, 0);
+            AND1.Link(ValueB, 1);
+
+            AND2.Link(ValueC, 0);
+            AND2.Link(XOR1, 0, 1);
+
+            OR.Link(AND1, 0, 0);
+            OR.Link(AND2, 0, 1);
+
+            XOR2.Link(XOR1, 0, 0);
+            XOR2.Link(ValueC, 1);
+
+            XOR2.GetOutputRaw(0).AddActionWhenOutputChange(Update);
+
+            OR.GetOutputRaw(0).AddActionWhenOutputChange(Update2);
         }
 
         private void Toggle1_Click(object sender, RoutedEventArgs e)
@@ -44,6 +63,10 @@ namespace GateSim
         {
             ValueB.Out = !ValueB.Out;
         }
+        private void Toggle3_Click(object sender, RoutedEventArgs e)
+        {
+            ValueC.Out = !ValueC.Out;
+        }
         private void Update(Output @out)
         {
             SolidColorBrush brush = new SolidColorBrush();
@@ -51,6 +74,14 @@ namespace GateSim
             else brush = new SolidColorBrush(Colors.Red);
 
             Rectangle1.Fill = brush;
+        }
+        private void Update2(Output @out)
+        {
+            SolidColorBrush brush = new SolidColorBrush();
+            if (@out.Out) brush = new SolidColorBrush(Colors.Green);
+            else brush = new SolidColorBrush(Colors.Red);
+
+            Rectangle2.Fill = brush;
         }
     }
 }

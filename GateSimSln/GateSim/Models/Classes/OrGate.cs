@@ -9,8 +9,8 @@ namespace GateSim.Models.Classes
     public class OrGate : Gate
     {
         
-        public OrGate(uint InputAmount, uint OutputAmount, string NAME)
-            : base(InputAmount, OutputAmount, NAME)
+        public OrGate(uint InputAmount, uint OutputAmount)
+            : base(InputAmount, OutputAmount)
         {
         }//--------------------------------------------------------
 

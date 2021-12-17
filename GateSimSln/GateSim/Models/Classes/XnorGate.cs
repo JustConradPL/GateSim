@@ -8,8 +8,8 @@ namespace GateSim.Models.Classes
 {
     public class XnorGate : Gate
     {
-        public XnorGate(uint OutputAmount, string NAME = "")
-            : base(2, OutputAmount, NAME)
+        public XnorGate(uint OutputAmount)
+            : base(2, OutputAmount)
         {
         }//---------------------------------------------------------
 

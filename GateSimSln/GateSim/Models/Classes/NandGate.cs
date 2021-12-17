@@ -8,8 +8,8 @@ namespace GateSim.Models.Classes
 {
     public class NandGate : Gate
     {
-        public NandGate(uint InputAmount, uint OutputAmount, string NAME) :
-            base(InputAmount, OutputAmount, NAME)
+        public NandGate(uint InputAmount, uint OutputAmount) :
+            base(InputAmount, OutputAmount)
         {
 
         }//-----------------------------------------------------------

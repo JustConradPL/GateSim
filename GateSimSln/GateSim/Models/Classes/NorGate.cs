@@ -9,8 +9,8 @@ namespace GateSim.Models.Classes
     public class NorGate : Gate
     {
 
-        public NorGate(uint InputAmount, uint OutputAmount, string NAME)
-            : base(InputAmount, OutputAmount, NAME)
+        public NorGate(uint InputAmount, uint OutputAmount)
+            : base(InputAmount, OutputAmount)
         {
         }//--------------------------------------------------------
 

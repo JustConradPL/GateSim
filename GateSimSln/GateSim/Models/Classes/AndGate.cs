@@ -8,8 +8,8 @@ namespace GateSim.Models.Classes
 {
     public class AndGate : Gate
     {
-        public AndGate(uint InputAmount, uint OutputAmount,string NAME) :
-            base(InputAmount, OutputAmount, NAME)
+        public AndGate(uint InputAmount, uint OutputAmount) :
+            base(InputAmount, OutputAmount)
         {
             
         }//-----------------------------------------------------------
