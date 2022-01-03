@@ -65,7 +65,7 @@ namespace GateSim.Models.Classes
         }//------------------------------------------------------------
 
         //SetOutput i Run nie robią nic w tej klasie jednak w klasach dziedziczonych stanowią zasadę działania bramki
-        //metoda SetOutput ma stanowić działanie esencję działania bramki
+        //metoda SetOutput ma stanowić działanie bramki
 
         protected virtual void SetOutputs()
         {
