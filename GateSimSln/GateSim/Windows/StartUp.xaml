@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         >
+    <!-- KOD XAML DLA PROSTEGO SUMATORA (WIĘCEJ INFO W KLASIE StartUp.xaml.cs) -->
     <Grid>
         <ToggleButton Click="Toggle1_Click" x:Name="Toggle1" Width="50" Height="50" Margin="82,125,661.6,245"/>
         <ToggleButton Click="Toggle2_Click" x:Name="Toggle2" Width="50" Height="50" Margin="82,202,661.6,168"/>

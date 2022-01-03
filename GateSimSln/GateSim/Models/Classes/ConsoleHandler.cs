@@ -8,6 +8,11 @@ using System.Diagnostics;
 
 namespace GateSim.Models.Classes
 {
+    /// <summary>
+    /// Prawie działą.
+    /// Słowo kluczowe. Prawie
+    /// Nie ruszać na razię aczkolwiek zostanie prawdopodobnie usunięta
+    /// </summary>
     public static class ConsoleHandler
     {
         [DllImport("kernel32.dll", SetLastError = true)]

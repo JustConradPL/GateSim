@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace GateSim.Models.Classes
 {
+    /// <summary>
+    /// Połaczenie między wyjściem, a wejściem bramki
+    /// Można porównać do kabli
+    /// </summary>
     public class Link
     {
+        //IN oznacza wejście bramki, które będzie zmieniane w zależności od OUT
         public Input IN { get; set; }
         public Output OUT { get; set; }
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4
@@ -15,13 +20,8 @@ namespace GateSim.Models.Classes
         public Link(Input @in, Output @out)
         {
             IN = @in; OUT = @out;
-            LinkToGate();
-        }//---------------------------------------
-        
-        private void LinkToGate()
-        {
             OUT.AddActionWhenOutputChange(ChangeInput);
-        }//--------------------------------------
+        }//---------------------------------------
 
         private void ChangeInput(Output @out)
         {

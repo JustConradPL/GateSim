@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace GateSim.Models.Classes
 {
+    /// <summary>
+    /// Klasa Gate stanowiąca baze dla wszystkich innych bramek
+    /// </summary>
     public class Gate
     {
+        //Określa czy bramka powinna się sama aktualizować. Wyłączenie może pomóc z optymalizacją
         public bool shouldAutoRun { private get; set; }
 
         protected Input[] inputs;
@@ -36,6 +40,8 @@ namespace GateSim.Models.Classes
             inputs[Index].In = Value;
         }//------------------------------------------------------------
 
+        //GetOutput zwróci jedynie wartość wyjścia. GetOutputRaw zwróci klasę Output we wskazanym indeksie.
+
         public bool GetOutput(uint Index)
         {
             return outputs[Index].Out;
@@ -46,7 +52,9 @@ namespace GateSim.Models.Classes
             return outputs[Index];
         }//------------------------------------------------------------
 
-        public bool? GetInput(uint Index)
+        //Ta sama analogia co w GetOutput
+
+        public bool GetInput(uint Index)
         {
             return inputs[Index].In;
         }//------------------------------------------------------------
@@ -56,19 +64,26 @@ namespace GateSim.Models.Classes
             return inputs[Index];
         }//------------------------------------------------------------
 
+        //SetOutput i Run nie robią nic w tej klasie jednak w klasach dziedziczonych stanowią zasadę działania bramki
+        //metoda SetOutput ma stanowić działanie esencję działania bramki
 
         protected virtual void SetOutputs()
         {
-            for (int i = 0; i < outputs.Length; i++)
-            {
-                outputs[i].Out = true;
-            }
+
+        }//------------------------------------------
+
+        public void Run()
+        {
+            SetOutputs();
         }//------------------------------------------
 
         private void Run(Input In)
         {
             SetOutputs();
         }//------------------------------------------
+
+        //Metody Link są metodami pozwalającymi na podłączenie wejścia bramki do wyjścia innej bramki.
+        //Można porównać to do podłączania kabelków.
 
         public void Link(Gate Source, uint OutputIndex, uint InputIndex)
         {
@@ -80,6 +95,8 @@ namespace GateSim.Models.Classes
             Link newLink = new Link(inputs[InputIndex], @out);
         }//-------------------------------------------
 
+        //Przeważnie proste bramki będą miały nie więcej niż 1 wyjście dlatego konwersja Gate na bool zwróci pierwsze wyjście
         public static implicit operator bool(Gate e) => e.outputs[0].Out;
+        //-------------------------------------------
     }//######################################################################################
 }

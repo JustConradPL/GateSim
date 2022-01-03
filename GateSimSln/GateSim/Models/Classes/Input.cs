@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GateSim.Models.Classes
 {
+    /// <summary>
+    /// Klasa mająca stanowić wejście bramki
+    /// </summary>
     public class Input
     {
         private event Action<Input> inputChanged;

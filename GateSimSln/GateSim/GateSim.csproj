@@ -78,8 +78,8 @@
     <Compile Include="Models\Classes\Output.cs" />
     <Compile Include="Models\Classes\XnorGate.cs" />
     <Compile Include="Models\Classes\XorGate.cs" />
-    <Compile Include="Models\ICommands\IToggleButtonClicked.cs" />
-    <Compile Include="Models\Modules\ToggleButtonModel.cs" />
+    <Compile Include="Models\ICommands\IToggleClicked.cs" />
+    <Compile Include="Models\Modules\ToggleModel.cs" />
     <Compile Include="Windows\StartUp.xaml.cs">
       <DependentUpon>StartUp.xaml</DependentUpon>
       <SubType>Code</SubType>

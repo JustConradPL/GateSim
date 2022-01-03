@@ -6,51 +6,52 @@ using System.Threading.Tasks;
 
 namespace GateSim.Models.Classes
 {
-    public class NotGate
+    /*
+     * Truth Table
+     * IN  OUT
+     * [0] [1]
+     * [1] [0]
+     */
+    public class NotGate : Gate
     {
 
-        Input input;
-        private Output _Out = new Output();
-        public Output Out
+        public Input @IN
         {
             get
             {
-                return _Out;
+                return inputs[0];
+            }
+            set
+            {
+                inputs[0] = value;
             }
         }
 
-
-        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-        public NotGate(bool InitialValue = false)
+        public Output @OUT
         {
-            input = new Input();
-            input.In = InitialValue;
-            input.AddActionWhenInputChange(SetOutput);
-        }//---------------------------------------------------
+            get
+            {
+                return outputs[0];
+            }
+        }
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        public NotGate() : base(1, 1)
+        {
+        }//--------------------------------------
 
         public void SetInput(bool Value)
         {
-            input.In = Value;
+            IN.In = Value;
         }//---------------------------------------------------
 
         public bool GetOutput()
         {
-            return Out.Out;
+            return OUT.Out;
         }//-------------------------------------------------
 
-        public void Link(Gate Source, uint OutputIndex)
+        protected override void SetOutputs()
         {
-            Link newLink = new Link(input, Source.GetOutputRaw(OutputIndex));
-        }//---------------------------------------------------
-
-        public void Link(Output @out)
-        {
-            Link newLink = new Link(input, @out);
-        }//--------------------------------------------------
-
-        private void SetOutput(Input @in)
-        {
-            _Out.Out = !@in.In;
+            outputs[0].Out = !inputs[0].In;
         }//-------------------------------------------------
     }//##################################################################3
 }

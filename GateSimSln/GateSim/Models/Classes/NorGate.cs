@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace GateSim.Models.Classes
 {
+
+    /*
+     * Truth Table
+     * IN  IN  OUT
+     * [0] [0] [1]
+     * [1] [0] [0]
+     * [1] [1] [0]
+     */
     public class NorGate : Gate
     {
 

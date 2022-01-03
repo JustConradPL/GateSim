@@ -22,6 +22,18 @@ namespace GateSim
     /// </summary>
     public partial class StartUp : Window
     {
+
+        /***************************
+        Wszystko tu jest tymczasowe i zmierzam do tego,
+        by nic tu nie było poza niezbędnymi elementami
+        ***************************/
+
+
+        /*
+          Obecny kod tworzy tzw. prosty sumator, który w większych ilościach może służyć do dodawania/odejmowania liczb
+         */ 
+         
+        //Te wyjsćia odpowiadają za przyciski w widoku
         Output ValueA = new Output();
         Output ValueB = new Output();
         Output ValueC = new Output();
@@ -29,12 +41,14 @@ namespace GateSim
         public StartUp()
         {
             InitializeComponent();
+            //Inicjaja bramek
             OrGate OR = new OrGate(2, 1);
             AndGate AND1 = new AndGate(2, 1);
             AndGate AND2 = new AndGate(2, 1);
             XorGate XOR1 = new XorGate(1);
             XorGate XOR2 = new XorGate(1);
 
+            //Podłączenie bramek
             XOR1.Link(ValueA, 0);
             XOR1.Link(ValueB, 1);
 
@@ -50,11 +64,15 @@ namespace GateSim
             XOR2.Link(XOR1, 0, 0);
             XOR2.Link(ValueC, 1);
 
+            //To nie jest potrzebne do działania bramek ale jest potrzebne (na razie) by w oknie StartUp.xaml cokolwiek się zmieniało
+
             XOR2.GetOutputRaw(0).AddActionWhenOutputChange(Update);
 
             OR.GetOutputRaw(0).AddActionWhenOutputChange(Update2);
         }
 
+
+        //Te wszystkie metody nie mają nic wspólnego z bramkami i są tylko tymczasowe póki nie zrobię modelu MVVM
         private void Toggle1_Click(object sender, RoutedEventArgs e)
         {
             ValueA.Out = !ValueA.Out;
