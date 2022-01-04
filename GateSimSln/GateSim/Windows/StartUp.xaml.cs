@@ -31,22 +31,21 @@ namespace GateSim
 
         /*
           Obecny kod tworzy tzw. prosty sumator, który w większych ilościach może służyć do dodawania/odejmowania liczb
-         */ 
-         
+         */
+
         //Te wyjsćia odpowiadają za przyciski w widoku
         Output ValueA = new Output();
         Output ValueB = new Output();
         Output ValueC = new Output();
-
         public StartUp()
         {
             InitializeComponent();
             //Inicjaja bramek
-            OrGate OR = new OrGate(2, 1);
-            AndGate AND1 = new AndGate(2, 1);
-            AndGate AND2 = new AndGate(2, 1);
-            XorGate XOR1 = new XorGate(1);
-            XorGate XOR2 = new XorGate(1);
+            AndGate AND1 = new AndGate(2);
+            AndGate AND2 = new AndGate(2);
+            XorGate XOR1 = new XorGate();
+            XorGate XOR2 = new XorGate();
+            OrGate OR = new OrGate(2);
 
             //Podłączenie bramek
             XOR1.Link(ValueA, 0);
@@ -56,21 +55,20 @@ namespace GateSim
             AND1.Link(ValueB, 1);
 
             AND2.Link(ValueC, 0);
-            AND2.Link(XOR1, 0, 1);
+            AND2.Link(XOR1, 1);
 
-            OR.Link(AND1, 0, 0);
-            OR.Link(AND2, 0, 1);
+            OR.Link(AND1, 0);
+            OR.Link(AND2, 1);
 
-            XOR2.Link(XOR1, 0, 0);
+            XOR2.Link(XOR1, 0);
             XOR2.Link(ValueC, 1);
 
             //To nie jest potrzebne do działania bramek ale jest potrzebne (na razie) by w oknie StartUp.xaml cokolwiek się zmieniało
 
-            XOR2.GetOutputRaw(0).AddActionWhenOutputChange(Update);
+            XOR2.GetOutputRaw().AddActionWhenOutputChange(Update);
 
-            OR.GetOutputRaw(0).AddActionWhenOutputChange(Update2);
+            OR.GetOutputRaw().AddActionWhenOutputChange(Update2);
         }
-
 
         //Te wszystkie metody nie mają nic wspólnego z bramkami i są tylko tymczasowe póki nie zrobię modelu MVVM
         private void Toggle1_Click(object sender, RoutedEventArgs e)

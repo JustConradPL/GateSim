@@ -15,8 +15,8 @@ namespace GateSim.Models.Classes
      */
     public class XnorGate : Gate
     {
-        public XnorGate(uint OutputAmount)
-            : base(2, OutputAmount)
+        public XnorGate()
+            : base(2, 1)
         {
         }//---------------------------------------------------------
 
@@ -28,10 +28,7 @@ namespace GateSim.Models.Classes
             if (inputs[0].In && !inputs[1].In) result = false;
             else if (inputs[1].In && !inputs[0].In) result = false;
 
-            for (int i = 0; i < outputs.Length; i++)
-            {
-                outputs[i].Out = result;
-            }
+            outputs[0].Out = result;
         }//-----------------------------------------------------
     }//#####################################################################################3
 }

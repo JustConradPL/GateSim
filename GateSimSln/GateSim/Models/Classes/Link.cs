@@ -12,15 +12,17 @@ namespace GateSim.Models.Classes
     /// </summary>
     public class Link
     {
+        Gate Owner;
         //IN oznacza wejście bramki, które będzie zmieniane w zależności od OUT
         public Input IN { get; set; }
         public Output OUT { get; set; }
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4
 
-        public Link(Input @in, Output @out)
+        public Link(Input @in, Output @out, Gate parent)
         {
             IN = @in; OUT = @out;
             OUT.AddActionWhenOutputChange(ChangeInput);
+            Owner = parent;
         }//---------------------------------------
 
         private void ChangeInput(Output @out)

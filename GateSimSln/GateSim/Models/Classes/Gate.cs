@@ -9,7 +9,7 @@ namespace GateSim.Models.Classes
     /// <summary>
     /// Klasa Gate stanowiąca baze dla wszystkich innych bramek
     /// </summary>
-    public class Gate
+    public abstract class Gate
     {
         //Określa czy bramka powinna się sama aktualizować. Wyłączenie może pomóc z optymalizacją
         public bool shouldAutoRun { private get; set; }
@@ -23,16 +23,9 @@ namespace GateSim.Models.Classes
             inputs = new Input[InputAmount];
             outputs = new Output[OutputAmount];
             shouldAutoRun = true;
-            for (int i = 0; i < OutputAmount; i++)
-            {
-                outputs[i] = new Output();
-            }
-            for (int i = 0; i < InputAmount; i++)
-            {
-                inputs[i] = new Input();
-                inputs[i].AddActionWhenInputChange(Run);
-            }
-
+            inputs = Handlers___Helpers.BasicHandler.InitiateTable<Input>(inputs);
+            outputs = Handlers___Helpers.BasicHandler.InitiateTable<Output>(outputs);
+            Handlers___Helpers.SpecializedHandler.AddEventToInputs(ref inputs, Run);
         }//------------------------------------------------------------
 
         public void SetInput(uint Index, bool Value)
@@ -42,12 +35,12 @@ namespace GateSim.Models.Classes
 
         //GetOutput zwróci jedynie wartość wyjścia. GetOutputRaw zwróci klasę Output we wskazanym indeksie.
 
-        public bool GetOutput(uint Index)
+        public bool GetOutput(uint Index = 0)
         {
             return outputs[Index].Out;
         }//------------------------------------------------------------
 
-        public Output GetOutputRaw(uint Index)
+        public Output GetOutputRaw(uint Index = 0)
         {
             return outputs[Index];
         }//------------------------------------------------------------
@@ -67,32 +60,31 @@ namespace GateSim.Models.Classes
         //SetOutput i Run nie robią nic w tej klasie jednak w klasach dziedziczonych stanowią zasadę działania bramki
         //metoda SetOutput ma stanowić działanie bramki
 
-        protected virtual void SetOutputs()
-        {
-
-        }//------------------------------------------
+        protected abstract void SetOutputs();
+        //----------------------------------------------------------
 
         public void Run()
         {
             SetOutputs();
-        }//------------------------------------------
+        }//---------------------------------------------------------
 
         private void Run(Input In)
         {
-            SetOutputs();
+            if (shouldAutoRun)
+                SetOutputs();
         }//------------------------------------------
 
         //Metody Link są metodami pozwalającymi na podłączenie wejścia bramki do wyjścia innej bramki.
         //Można porównać to do podłączania kabelków.
 
-        public void Link(Gate Source, uint OutputIndex, uint InputIndex)
+        public void Link(Gate Source, uint InputIndex, uint OutputIndex = 0)
         {
-            Link newLink = new Link(inputs[InputIndex], Source.GetOutputRaw(OutputIndex));
+            Link newLink = new Link(inputs[InputIndex], Source.GetOutputRaw(OutputIndex), this);
         }//-------------------------------------------
 
         public void Link(Output @out, uint InputIndex)
         {
-            Link newLink = new Link(inputs[InputIndex], @out);
+            Link newLink = new Link(inputs[InputIndex], @out, this);
         }//-------------------------------------------
 
         //Przeważnie proste bramki będą miały nie więcej niż 1 wyjście dlatego konwersja Gate na bool zwróci pierwsze wyjście

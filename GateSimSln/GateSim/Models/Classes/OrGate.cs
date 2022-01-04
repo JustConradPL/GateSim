@@ -16,8 +16,8 @@ namespace GateSim.Models.Classes
     public class OrGate : Gate
     {
         
-        public OrGate(uint InputAmount, uint OutputAmount)
-            : base(InputAmount, OutputAmount)
+        public OrGate(uint InputAmount)
+            : base(InputAmount, 1)
         {
         }//--------------------------------------------------------
 
@@ -37,10 +37,7 @@ namespace GateSim.Models.Classes
                 }
             }
 
-            for (int i = 0; i < outputs.Length; i++)
-            {
-                outputs[i].Out = isSomeOutputTrue;
-            }
+            outputs[0].Out = isSomeOutputTrue;
         }//--------------------------------------------------------------
     }//########################################################
 }

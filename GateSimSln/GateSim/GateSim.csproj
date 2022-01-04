@@ -66,6 +66,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Handlers - Helpers\BasicHandler.cs" />
+    <Compile Include="Handlers - Helpers\SpecializedHandler.cs" />
     <Compile Include="Models\Classes\AndGate.cs" />
     <Compile Include="Models\Classes\ConsoleHandler.cs" />
     <Compile Include="Models\Classes\Gate.cs" />
